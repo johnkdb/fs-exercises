@@ -4,7 +4,6 @@ from databricks.feature_store import FeatureStoreClient
 from unittest.mock import MagicMock, patch
 import unittest
 
-# from project import features
 from project.features import dummy_feature
 from project.features_etl import update_features
 

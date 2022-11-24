@@ -14,10 +14,12 @@ def input_data(spark):
   
 def update_features(spark, table_name):
   df = input_data(spark)
-  df_features = dummy_feature(df)
+  # Calculate features on df based on the feature engineering code in the module project.features
+  df_features = None  # fill in
 
+  # See the accompanying unit test to see how the feature store is expected to be used here.
   fs = FeatureStoreClient()
   fs.write_table(
-    name=table_name,
-    df=df_features,
-    mode='merge')
+    name=None,  # fill in
+    df=None,  # fill in
+    mode=None)  # fill in

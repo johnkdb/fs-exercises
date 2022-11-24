@@ -47,19 +47,25 @@ display(training_df)
 # MAGIC 
 # MAGIC ## 2. Score the best model on the training data
 # MAGIC 
-# MAGIC Here we use [`FeatureStoreClient.score_batch` (link to documentation)](https://docs.databricks.com/dev-tools/api/python/latest/feature-store/client.html#databricks.feature_store.client.FeatureStoreClient.score_batch) to reference the best model found by AutoML, as well as the other required parameters that you need to look up in the following documentation:
+# MAGIC Here we use [`FeatureStoreClient.score_batch` (link to documentation)](https://docs.databricks.com/dev-tools/api/python/latest/feature-store/client.html#databricks.feature_store.client.FeatureStoreClient.score_batch) to reference the best model found by AutoML, as well as the other required parameters that you need to look up in the linked documentation.
 
 # COMMAND ----------
 
 # DBTITLE 1,1. Train an AutoML Regression model
 from databricks import automl
+
+# Use the documentation linked above to figure out the parameters needed for AutoML to use the Feature Store.
+
+# The table name is defined at the top of this Notebook. Its key(s) can be found via the Feature Store UI or by FeatureStoreClient.get_table. You need to specify which keys from the training dataset that correspond to the FS Table key(s) in the same order.
+
+# Hint: The AutoML parameter for Feature Store lookups follow a different syntax than what you've seen before with FeatureLookup objects. See the documentation for more details.
+
 summary = automl.regress(
-  training_df, 
-  target_col="price",
+  training_df,
   timeout_minutes=10,
-  feature_store_lookups=[{
-     "table_name": feature_table_name,
-     "lookup_key": ["index"]}])
+  target_col="price",
+  # TODO: Both the parameter name and its value is missing here. See the documentation on what is needed.
+)
 
 # COMMAND ----------
 
@@ -70,8 +76,8 @@ fs = FeatureStoreClient()
 model_uri = f'runs:/{summary.best_trial.mlflow_run_id}/model'
 
 predictions_df = fs.score_batch(
-  model_uri,
-  training_df,
+  # Here we would like to score the best model from AutoML (referenced on line 4) on our training data (for simplicity).
+  # Both the names and the values of the required parameters are missing. See the documentation on score_batch linked further up.
   result_type='double')
 
 display(predictions_df)
