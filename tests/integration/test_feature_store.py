@@ -19,7 +19,8 @@ class FeatureStoreIntegrationTest(unittest.TestCase):
       StructField('dummy', IntegerType(), True)])
     
     # Create a feature store table with the name and schema defined above.
-    # See the docs on the create_table function signature: https://docs.databricks.com/dev-tools/api/python/latest/feature-store/client.html#databricks.feature_store.client.FeatureStoreClient.create_table
+    # See the docs on the create_table function signature:
+    # https://docs.databricks.com/dev-tools/api/python/latest/feature-store/client.html#databricks.feature_store.client.FeatureStoreClient.create_table
     print(f'Creating feature table {self.table_name}')
     self.fs.create_table(
       name=self.table_name,
