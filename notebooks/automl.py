@@ -12,7 +12,7 @@
 
 # COMMAND ----------
 
-feature_table_name = 'john_karlsson_databricks_com.airbnb_62c807'
+feature_table_name = 'odl_instructor_798535_databrickslabs_com.airbnb_88328e'
 
 # COMMAND ----------
 
